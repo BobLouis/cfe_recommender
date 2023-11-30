@@ -1,0 +1,16 @@
+Django => ML pipeline
+    - Get data - via Django
+        - [x] User
+        - [] Rating -> Collaborative Filtering
+        - [] Dataset -> Movies
+            - Scrape from Internet
+            - API -> Software-to-Software
+            - User-generated content -> cold start problem
+            - [x] open source Datasets -> Kaggle -> The Movies Dataset
+    - Prepare data //pandas
+    - Train Model from data //djanog x Celery => Keras Torch
+    - Use Model on New data 
+
+
+
+cold start problem => fake data

@@ -5,7 +5,7 @@ from .models import Movie
 
 class MovieAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'calculate_rating_count']
-    readonly_fields = ['calculate_rating_count', 'calculate_rating_avg']
+    readonly_fields = ['calculate_rating_count', 'rating_avg_display']
 
 
 admin.site.register(Movie , MovieAdmin)

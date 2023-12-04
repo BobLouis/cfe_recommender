@@ -55,8 +55,9 @@ def rating_post_save(sender, instance, created, *args, **kwargs):
                 content_type=instance.content_type,
                 object_id=instance.object_id,
                 user=instance.user,
-            ).exclude(id=_id , active=False)
+            ).exclude(id=_id , active=True)
             if qs.exists():
+                qs = qs.exclude(active_update_timestamp__isnull=False)
                 qs.update(active=False, active_update_timestamp=timezone.now())
 
 post_save.connect(rating_post_save, sender=Rating)

@@ -6,7 +6,21 @@ class MovieListView(generic.ListView):
     template_name = 'movies/list.html'
     paginate_by = 100
     # context => object_list
-    queryset = Movie.objects.all()
+    queryset = Movie.objects.order_by("-rating_avg")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        print(context)
+        request = self.request
+        user = request.user
+        if user.is_authenticated:
+            object_list = context['object_list']
+            object_ids = [x.id for x in object_list]
+            
+
+            qs = user.rating_set.filter(active=True,object_id__in=object_ids)
+            context['my_ratings'] = {"123":5}
+        return context
 
 
 

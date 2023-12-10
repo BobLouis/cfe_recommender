@@ -19,7 +19,7 @@ class MovieListView(generic.ListView):
             
 
             qs = user.rating_set.filter(active=True,object_id__in=object_ids)
-            context['my_ratings'] = {"123":5}
+            context['my_ratings'] = {f"{x.object_id}": x.value for x in qs}
         return context
 
 

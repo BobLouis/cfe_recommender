@@ -5,15 +5,16 @@
 
 
 <div class="row my-2">
-    <div class="col-md-2 ms-auto">
-        <select name="sort" class="form-control" hx-get="/movies/" hx-target="#target-list-change">
-            {% for key, value in sorting_choices.items%}
-                <option value="{{ value }}">{{key|title}}</option>
-            {% endfor %}
-
-        </select>
-    </div>
+  <div class="col-md-2 ms-auto">
+      <select name='sort' class="form-control" hx-get="/movies/" hx-target="#target-list-change">
+        {% for key, value in sorting_choices.items %}
+          <option {% if request.session.movie_sort_order == value %}selected{% endif %} value="{{ value }}">{{ key|title }}</option>
+        {% endfor %}
+      
+      </select>
+  </div>
 </div>
+
 
 
 

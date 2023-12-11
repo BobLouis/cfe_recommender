@@ -19,10 +19,11 @@ class MovieListView(generic.ListView):
     # context => object_list
 
     def get_queryset(self) :
-        qs = Movie.objects.all().order_by("-rating_avg")
         request = self.request
+        default_sort = request.session.get('movie_sort_order') or '-rating_avg'
+        qs = Movie.objects.all().order_by(default_sort)
+        
         sort = request.GET.get('sort')
-        print("sort", sort)
         if sort is not None:
             qs = qs.order_by(sort)
         return qs

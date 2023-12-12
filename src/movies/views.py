@@ -74,6 +74,11 @@ movie_detail_view = MovieDetailView.as_view()
 
 class MovieInfiniteRatingView(MovieDetailView):
     def get_object(self):
+        user = self.request.user
+        # exclude_ids = []
+        # if user.is_authenticated:
+        #     exclude_ids = [x.object_id for x in user.rating_set.filter(active=True)]
+        # return Movie.objects.all().exclude(id__in=exclude_ids).order_by('?').first()
         return Movie.objects.all().order_by('?').first()
     
     def get_template_names(self):

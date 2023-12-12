@@ -1,4 +1,5 @@
 from typing import Any
+from django.db import models
 from django.db.models.query import QuerySet
 from django.views import generic
 
@@ -69,3 +70,17 @@ class MovieDetailView(generic.DetailView):
 
 
 movie_detail_view = MovieDetailView.as_view()
+
+
+class MovieInfiniteRatingView(MovieDetailView):
+    def get_object(self):
+        return Movie.objects.all().order_by('?').first()
+    
+    def get_template_names(self):
+        request = self.request
+        if request.htmx:
+            return ['movies/snippet/infinite.html']
+        return ['movies/infinite-view.html']
+    
+
+movie_infinite_rating_view = MovieInfiniteRatingView.as_view()

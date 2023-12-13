@@ -8,5 +8,6 @@ class MovieAdmin(admin.ModelAdmin):
     readonly_fields = ['calculate_rating_count',
                        'rating_avg_display', 'rating_count', 'id']
     search_fields = ['title']
+    search_fields = ['id']
 
 admin.site.register(Movie , MovieAdmin)
